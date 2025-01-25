@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const UserData = require('../models/UserData');  // Asegúrate de que UserData esté correctamente importado
 const jwt = require('jsonwebtoken');
