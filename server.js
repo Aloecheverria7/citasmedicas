@@ -6,16 +6,21 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
 app.use(express.json());
-app.use(cors()); 
+
+// Configuración de CORS para aceptar cualquier dominio
+app.use(cors({
+    origin: '*', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
+}));
+
 app.get('/', (req, res) => {
     res.send('<h1>Hello, Express.js Server!</h1>');
 });
 
-
-//DB configuration
-const db= mysql.createConnection({
+// Configuración de la base de datos
+const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -23,20 +28,21 @@ const db= mysql.createConnection({
 });
 
 db.connect(err => {
-    if(err) throw err;
-})
+    if (err) throw err;
+});
 
 module.exports.db = db;
 
-//Routes files
+// Importar rutas
 const reservationRoute = require('./routes/Reservation');
 const userRoute = require('./routes/User');
-//use routes
+
+// Usar rutas
 app.use('/api/reservations', reservationRoute);
 app.use('/api/user', userRoute);
 
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
-    console.log(`Server is running on port`);
+    console.log(`Server is running on port ${port}`);
 });
