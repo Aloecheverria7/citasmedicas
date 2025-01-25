@@ -27,6 +27,10 @@ const db = mysql.createConnection({
 db.connect(err => {
     if (err) {
         console.error('Error conectando a la base de datos:', err);
+        console.log('DB_HOST:', process.env.DB_HOST);
+        console.log('DB_USER:', process.env.DB_USER);
+        console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+        console.log('DB_NAME:', process.env.DB_NAME);
         return;
       }
     console.log('Conectado a la base de datos MySQL');
