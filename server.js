@@ -9,11 +9,7 @@ const jwt = require('jsonwebtoken');
 app.use(express.json());
 
 // Configuración de CORS para aceptar cualquier dominio
-app.use(cors({
-    origin: '*', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
-}));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello, Express.js Server!</h1>');
@@ -31,7 +27,7 @@ db.connect(err => {
     if (err) throw err;
 });
 
-module.exports.db = db;
+// module.exports.db = db;
 
 // Importar rutas
 const reservationRoute = require('./routes/Reservation');
@@ -46,3 +42,5 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app;
