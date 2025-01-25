@@ -27,7 +27,7 @@ db.connect(err => {
     if (err) throw err;
 });
 
-// module.exports.db = db;
+module.exports.db = db;
 
 // Importar rutas
 const reservationRoute = require('./routes/Reservation');
