@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 
 
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:4200' })); 
+app.use(cors()); 
 app.get('/', (req, res) => {
     res.send('<h1>Hello, Express.js Server!</h1>');
 });
