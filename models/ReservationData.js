@@ -25,6 +25,17 @@ class ReservationData{
             created_date: this.created_date 
         }
     }
+
+    toText() {
+        return `
+        Has recibido una cita, los datos del paciente a continuacion: \n\n
+        Nombre: ${this.full_name}, \n
+        Telefono: ${this.phone_number}, \n
+        Edad: ${this.age}, \n
+        Fecha elegida: ${this.selected_date}, \n
+        Hora elegida: ${this.selected_schedule}. \n
+        `
+    }
 }
 
 module.exports = ReservationData;
