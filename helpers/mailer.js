@@ -18,7 +18,7 @@ async function callEmailEndpoint(data) {
     try {
         const info = {
             ...data,
-            to: 'aloecheverria7@gmail.com',
+            to: 'josjo09@gmail.com',
             subject: 'Nueva Cita Agendada',
             template_name: 'citas',
             mailer_name: 'Citas Medicas',
