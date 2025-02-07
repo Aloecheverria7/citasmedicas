@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const axios = require('axios');
+
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -11,6 +13,26 @@ const transporter = nodemailer.createTransport({
         pass: process.env.SMTP_PASSWORD,
     }
 });
+
+async function callEmailEndpoint(data) {
+    try {
+        const info = {
+            ...data,
+            to: 'j.romeroc97@gmail.com',
+            subject: 'Nueva Cita Agendada',
+            template_name: 'citas',
+            mailer_name: 'Citas Medicas',
+            markdown: false
+        }
+
+        const response = await axios.post(`https://prueba.ewoldygroup.com/api/send-email`, info);
+
+        return response;
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
 
 async function sendMail(to, subject, text) {
     try {
@@ -30,4 +52,4 @@ async function sendMail(to, subject, text) {
     }
 }
 
-module.exports = sendMail;
+module.exports = callEmailEndpoint;

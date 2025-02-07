@@ -26,6 +26,16 @@ class ReservationData{
         }
     }
 
+    toEmailObject() {
+        return {
+            full_name: this.full_name,
+            phone: this.phone_number,
+            age: this.age,
+            hour: this.selected_schedule,
+            date: this.selected_date
+        }
+    }
+
     toText() {
         return `
         Has recibido una cita, los datos del paciente a continuacion: \n\n

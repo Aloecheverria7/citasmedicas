@@ -1,6 +1,6 @@
 const Reservation = require('../models/Reservation');
 const ReservationData = require('../models/ReservationData');
-const sendMail = require('../helpers/mailer');
+const callEmailEndpoint = require('../helpers/mailer');
 
 exports.createReservation = (req, res) => {
     const reservationData = new ReservationData(req.body);
@@ -28,7 +28,7 @@ exports.createReservation = (req, res) => {
                 return res.status(500).send({ error: 'Error al crear la reservación' });
             }
 
-            sendMail('j.romeroc97@gmail.com', 'Cita por confirmar', reservationData.toText()).then((result) => {console.log(result)});
+            callEmailEndpoint(reservationData.toEmailObject()).then((result) => {});
             res.status(201).send({ message: 'Horario asignado', scheduleId: results.insertId });
         });
     });
