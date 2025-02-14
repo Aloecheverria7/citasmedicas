@@ -41,7 +41,7 @@ exports.login = (req, res) => {
 
         // Si no se encuentra el usuario
         if (!user) {
-            return res.status(401).send({ error: 'Usuario o contraseña incorrectos' });
+            return res.status(401).send({ error: 'No hay una cuenta asociada a este nombre de usuario.' });
         }
 
         // 2. Verificar si la contraseña coincide con el hash almacenado
